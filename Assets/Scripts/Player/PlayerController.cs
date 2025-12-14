@@ -9,16 +9,13 @@ public class PlayerController : MonoBehaviour
     public float lerpSpeed = 1f;
 
     public float speed = 1f;
-    public string tagToCheckEnemy = "Enemy";
+    public string tagEnemy = "Enemy";
+    public string tagEndLine = "EndLine";
 
-    [SerializeField] private bool _canRun;
+    public GameObject endScreen;
+
+    private bool _canRun;
     private Vector3 _pos;
-
-    void Start()
-    {
-        _canRun = true;
-    }
-
     void Update()
     {
 
@@ -34,9 +31,28 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.CompareTag(tagToCheckEnemy))
+        if (collision.transform.CompareTag(tagEnemy))
         {
             _canRun = false;
+            EndGame();
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag(tagEndLine))
+        {
+            EndGame();
+        }
+    }
+
+    public void StartRun()
+    {
+        _canRun = true;
+    }
+
+    public void EndGame()
+    {
+        endScreen.SetActive(true);
     }
 }
