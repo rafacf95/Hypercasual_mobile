@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Core.Singleton;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
     [Header("Lerp")]
     public Transform target;
@@ -16,9 +17,17 @@ public class PlayerController : MonoBehaviour
 
     private bool _canRun;
     private Vector3 _pos;
+    private float _currentSpeed;
+    private Vector3 _startPosition;
+
+    void Start()
+    {
+        _startPosition = transform.position;
+        ResetSpeed();
+    }
+
     void Update()
     {
-
         if (!_canRun) return;
 
         _pos = target.position;
@@ -26,7 +35,7 @@ public class PlayerController : MonoBehaviour
         _pos.z = transform.position.z;
 
         transform.position = Vector3.Lerp(transform.position, _pos, lerpSpeed * Time.deltaTime);
-        transform.Translate(speed * Time.deltaTime * transform.forward);
+        transform.Translate(_currentSpeed * Time.deltaTime * transform.forward);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -54,5 +63,20 @@ public class PlayerController : MonoBehaviour
     public void EndGame()
     {
         endScreen.SetActive(true);
+    }
+
+    public void SetPowerUpText(string s)
+    {
+        // uiTextPowerUp.text = s;
+    }
+
+    public void PowerUpSpeedUp(float f)
+    {
+        _currentSpeed = f;
+    }
+
+    public void ResetSpeed()
+    {
+        _currentSpeed = speed;
     }
 }
