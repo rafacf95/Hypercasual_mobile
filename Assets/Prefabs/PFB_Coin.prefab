@@ -144,3 +144,6 @@ MonoBehaviour:
   timeToHide: 0
   graphItem: {fileID: 1440936826639614434}
   audioSource: {fileID: 0}
+  collect: 0
+  lerp: 5
+  minDistance: 1
