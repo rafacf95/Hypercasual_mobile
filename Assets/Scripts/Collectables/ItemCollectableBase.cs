@@ -21,7 +21,7 @@ public class ItemCollectableBase : MonoBehaviour
         }
     }
 
-    private void HideObject()
+    public void HideObject()
     {
         gameObject.SetActive(false);
     }
@@ -41,7 +41,7 @@ public class ItemCollectableBase : MonoBehaviour
         {
             if (!particles.isPlaying)
             {
-                particles.collision.AddPlane(GameObject.Find("SPR_Floor").GetComponent<Transform>());
+                // particles.collision.AddPlane(GameObject.Find("SPR_Floor").GetComponent<Transform>());
                 particles.Play();
             }
         }
