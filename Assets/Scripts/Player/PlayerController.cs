@@ -12,8 +12,10 @@ public class PlayerController : Singleton<PlayerController>
     public float speed = 1f;
     public string tagEnemy = "Enemy";
     public string tagEndLine = "EndLine";
-
     public GameObject endScreen;
+
+    [Header("Power Ups")]
+    public bool invincible;
 
     private bool _canRun;
     private Vector3 _pos;
@@ -40,7 +42,7 @@ public class PlayerController : Singleton<PlayerController>
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.CompareTag(tagEnemy))
+        if (collision.transform.CompareTag(tagEnemy) && !invincible)
         {
             _canRun = false;
             EndGame();
@@ -78,5 +80,10 @@ public class PlayerController : Singleton<PlayerController>
     public void ResetSpeed()
     {
         _currentSpeed = speed;
+    }
+
+    public void SetInvincible(bool b = true)
+    {
+        invincible = b;
     }
 }
