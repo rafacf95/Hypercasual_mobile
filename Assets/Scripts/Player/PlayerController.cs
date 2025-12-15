@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Core.Singleton;
+using TMPro;
+using DG.Tweening;
 
 public class PlayerController : Singleton<PlayerController>
 {
@@ -15,16 +17,18 @@ public class PlayerController : Singleton<PlayerController>
 
     [Header("Power Ups")]
     public bool invincible;
+    public TextMeshPro textMeshPro;
 
     private bool _canRun;
     private Vector3 _pos;
-    private float _currentSpeed;
+    [SerializeField] private float _currentSpeed;
     private Vector3 _startPosition;
 
     void Start()
     {
         _startPosition = transform.position;
         ResetSpeed();
+        SetPowerUpText();
     }
 
     void Update()
@@ -61,9 +65,11 @@ public class PlayerController : Singleton<PlayerController>
         _canRun = true;
     }
 
-    public void SetPowerUpText(string s)
+    #region PowerUps
+
+    public void SetPowerUpText(string s = "")
     {
-        // uiTextPowerUp.text = s;
+        textMeshPro.text = s;
     }
 
     public void PowerUpSpeedUp(float f)
@@ -80,4 +86,22 @@ public class PlayerController : Singleton<PlayerController>
     {
         invincible = b;
     }
+
+    public void ChangeHeight(float height, float duration, float animationDuration, Ease ease)
+    {
+        // var p = transform.position;
+        // p.y = _startPosition.y + height;
+        // transform.position = p;
+        transform.DOMoveY(_startPosition.y + height, animationDuration).SetEase(ease);
+    }
+
+    public void ResetHeight()
+    {
+        // var p = transform.position;
+        // p.y = _startPosition.y;
+        // transform.position = p;
+        transform.DOMoveY(_startPosition.y, .1f);
+    }
+
+    #endregion
 }
