@@ -11,6 +11,7 @@ public class PlayerController : Singleton<PlayerController>
     public Transform target;
     public float lerpSpeed = 1f;
 
+    [Header("Player Configs")]
     public float speed = 1f;
     public string tagEnemy = "Enemy";
     public string tagEndLine = "EndLine";
@@ -20,15 +21,20 @@ public class PlayerController : Singleton<PlayerController>
     public TextMeshPro textMeshPro;
     public GameObject coinCollector;
 
+    [Header("Animation setup")]
+    public AnimatorManager animatorManager;
+
     private bool _canRun;
     private Vector3 _pos;
     [SerializeField] private float _currentSpeed;
     private Vector3 _startPosition;
+    private float _baseAnimationSpeed = 7f;
 
     void Start()
     {
         _startPosition = transform.position;
-        ResetSpeed();
+        // ResetSpeed();
+        _currentSpeed = speed;
         SetPowerUpText();
     }
 
@@ -49,7 +55,10 @@ public class PlayerController : Singleton<PlayerController>
         if (collision.transform.CompareTag(tagEnemy) && !invincible)
         {
             _canRun = false;
+            transform.DOMoveZ(-1f, .3f).SetRelative();
             GameManager.Instance.EndGame();
+            animatorManager.Play(AnimatorManager.AnimationType.DEAD);
+
         }
     }
 
@@ -57,17 +66,19 @@ public class PlayerController : Singleton<PlayerController>
     {
         if (other.transform.CompareTag(tagEndLine))
         {
+            _canRun = false;
             GameManager.Instance.EndGame();
+            animatorManager.Play(AnimatorManager.AnimationType.IDLE);
         }
     }
 
     public void StartRun()
     {
         _canRun = true;
+        animatorManager.Play(AnimatorManager.AnimationType.RUN);
     }
 
     #region PowerUps
-
     public void SetPowerUpText(string s = "")
     {
         textMeshPro.text = s;
@@ -76,11 +87,13 @@ public class PlayerController : Singleton<PlayerController>
     public void PowerUpSpeedUp(float f)
     {
         _currentSpeed = f;
+        animatorManager.Play(AnimatorManager.AnimationType.RUN, _currentSpeed /_baseAnimationSpeed);
     }
 
     public void ResetSpeed()
     {
         _currentSpeed = speed;
+        animatorManager.Play(AnimatorManager.AnimationType.RUN, _currentSpeed /_baseAnimationSpeed);
     }
 
     public void SetInvincible(bool b = true)
@@ -108,6 +121,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         coinCollector.transform.localScale = Vector3.one * size;
     }
-
     #endregion
+
+
 }
