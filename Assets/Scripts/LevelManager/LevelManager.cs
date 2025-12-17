@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    [Header("Level")]
     public Transform container;
     public List<GameObject> levels;
 
     [Header("Pieces")]
-    public List<LevelPieceBase> levelPeieces;
+    public List<LevelPieceBase> levelPieces;
     public LevelPieceBase endPiece;
     public int piecesNumber = 5;
     public float timeBetweenPieces = .3f;
+    public List<ArtManager.ArtType> artTypes;
 
     private int _index;
     private GameObject _currentLevel;
-    private List<LevelPieceBase> _spawnedPieces;
-    private LevelPieceBase _lastPiece;
+    [SerializeField] private List<LevelPieceBase> _spawnedPieces = new List<LevelPieceBase>();
+    private LevelPieceBase _lastPiecePlaced;
 
     #region Level
     private void SpawnNextLevel()
@@ -47,30 +49,60 @@ public class LevelManager : MonoBehaviour
     private void CreateLevel()
     {
         // StartCoroutine(CreateLevelPiecesCoroutine());
-        _spawnedPieces = new List<LevelPieceBase>();
+
+        ClearSpawnedPieces();
         for (int i = 0; i < piecesNumber; i++)
         {
             CreateLevelPiece();
         }
+        
         var end = Instantiate(endPiece, container);
-        end.transform.position = _lastPiece.endPosition.position;
+        end.transform.position = _lastPiecePlaced.endPosition.position;
+        _spawnedPieces.Add(end);
     }
     private void CreateLevelPiece()
     {
-        var piece = levelPeieces[Random.Range(0, levelPeieces.Count)];
-        var spawned = Instantiate(piece, container);
+        var piece = levelPieces[Random.Range(0, levelPieces.Count)];
+        var spawnedPiece = Instantiate(piece, container);
 
         if (_spawnedPieces.Count > 0)
         {
-            _lastPiece = _spawnedPieces[_spawnedPieces.Count - 1];
-            spawned.transform.position = _lastPiece.endPosition.position;
+            var lastPiece = _spawnedPieces[_spawnedPieces.Count - 1];
+            spawnedPiece.transform.position = lastPiece.endPosition.position;
+            _lastPiecePlaced = spawnedPiece;
+        }
+        else
+        {
+            spawnedPiece.transform.localPosition = Vector3.zero;
         }
 
-        _spawnedPieces.Add(spawned);
+        foreach (var p in spawnedPiece.GetComponentsInChildren<ArtPiece>())
+        {
+            p.ChangePiece(ArtManager.Instance.GetSetupByType(RandomArtType()).gameObject);
+            ColorManager.Instance.ChangeColorByType(RandomArtType());
+        }
+
+
+        _spawnedPieces.Add(spawnedPiece);
+    }
+
+    private void ClearSpawnedPieces()
+    {
+        for (int i = _spawnedPieces.Count - 1; i >= 0; i--)
+        {
+            Destroy(_spawnedPieces[i].gameObject);
+        }
+        _spawnedPieces.Clear();
+    }
+
+    public ArtManager.ArtType RandomArtType()
+    {
+        return artTypes[Random.Range(0, artTypes.Count)];
     }
 
     IEnumerator CreateLevelPiecesCoroutine()
     {
+        ClearSpawnedPieces();
         _spawnedPieces = new List<LevelPieceBase>();
         for (int i = 0; i < piecesNumber; i++)
         {
@@ -91,7 +123,8 @@ public class LevelManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.D))
         {
-            SpawnNextLevel();
+            // SpawnNextLevel();
+            CreateLevel();
         }
 
 
