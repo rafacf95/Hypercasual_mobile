@@ -12,10 +12,14 @@ public class MovementHelper : MonoBehaviour
     void Start()
     {
         // transform.position = positions[0].transform.position;
-        transform.position = positions[RandomIndex()].transform.position;
-        NextIndex();
-    
-        StartCoroutine(StartMoviment());
+
+        if (!IsEmpty())
+        {
+            transform.position = positions[RandomIndex()].transform.position;
+            NextIndex();
+
+            StartCoroutine(StartMoviment());
+        }
     }
 
     private void NextIndex()
@@ -29,8 +33,15 @@ public class MovementHelper : MonoBehaviour
         return Random.Range(0, positions.Count);
     }
 
+    private bool IsEmpty()
+    {
+        return (positions.Count == 0);
+    }
+
     IEnumerator StartMoviment()
     {
+        if (IsEmpty()) yield break;
+
         float time = 0;
 
         while (true)

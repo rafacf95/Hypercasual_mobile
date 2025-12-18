@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -14,6 +15,11 @@ public class LevelManager : MonoBehaviour
     public int piecesNumber = 5;
     public float timeBetweenPieces = .3f;
     public List<ArtManager.ArtType> artTypes;
+
+    [Header("Animation")]
+    public float scaleDuration = .2f;
+    public float scaleTimeBetweenPieces = .1f;
+    public Ease ease = Ease.OutBack;
 
     private int _index;
     private GameObject _currentLevel;
@@ -48,7 +54,7 @@ public class LevelManager : MonoBehaviour
 
     private void CreateLevel()
     {
-        // StartCoroutine(CreateLevelPiecesCoroutine());
+        // StartCoroutine(CreateLevelPieceCoroutine());
 
         ClearSpawnedPieces();
         for (int i = 0; i < piecesNumber; i++)
@@ -59,6 +65,8 @@ public class LevelManager : MonoBehaviour
         var end = Instantiate(endPiece, container);
         end.transform.position = _lastPiecePlaced.endPosition.position;
         _spawnedPieces.Add(end);
+
+        StartCoroutine(ScalePiecesByTime());
     }
     private void CreateLevelPiece()
     {
@@ -82,7 +90,6 @@ public class LevelManager : MonoBehaviour
             ColorManager.Instance.ChangeColorByType(RandomArtType());
         }
 
-
         _spawnedPieces.Add(spawnedPiece);
     }
 
@@ -100,7 +107,23 @@ public class LevelManager : MonoBehaviour
         return artTypes[Random.Range(0, artTypes.Count)];
     }
 
-    IEnumerator CreateLevelPiecesCoroutine()
+    IEnumerator ScalePiecesByTime()
+    {
+        foreach (var p in _spawnedPieces)
+        {
+            p.transform.localScale = Vector3.zero;
+        }
+
+        yield return null;
+
+        for (int i = 0; i < _spawnedPieces.Count; i++)
+        {
+            _spawnedPieces[i].transform.DOScale(1, scaleDuration).SetEase(ease);
+            yield return new WaitForSeconds(scaleTimeBetweenPieces);
+        }
+    }
+
+    IEnumerator CreateLevelPieceCoroutine()
     {
         ClearSpawnedPieces();
         _spawnedPieces = new List<LevelPieceBase>();
@@ -109,6 +132,7 @@ public class LevelManager : MonoBehaviour
             CreateLevelPiece();
             yield return new WaitForSeconds(timeBetweenPieces);
         }
+        
     }
 
     #endregion
