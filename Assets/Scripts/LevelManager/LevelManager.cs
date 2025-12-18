@@ -55,7 +55,7 @@ public class LevelManager : MonoBehaviour
         {
             CreateLevelPiece();
         }
-        
+
         var end = Instantiate(endPiece, container);
         end.transform.position = _lastPiecePlaced.endPosition.position;
         _spawnedPieces.Add(end);
@@ -116,6 +116,11 @@ public class LevelManager : MonoBehaviour
     void Awake()
     {
         // SpawnNextLevel();
+        // CreateLevel();
+    }
+
+    void Start()
+    {
         CreateLevel();
     }
 

@@ -11,7 +11,6 @@ public class ColorManager : Singleton<ColorManager>
     public void ChangeColorByType(ArtManager.ArtType artType)
     {
         var setup = colorSetups.Find(i => i.artType == artType);
-        Debug.Log(setup);
         for(int i = 0; i < materials.Count; i++)
         {
             materials[i].SetColor("_Color", setup.colors[i]);
