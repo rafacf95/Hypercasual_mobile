@@ -19,6 +19,11 @@ public class ItemCollectableCoin : ItemCollectableBase
         collect = true;
     }
 
+    void Start()
+    {
+        CoinAnimatorManager.Instance.RegisterCoin(this);
+    }
+
     void Update()
     {
         if (collect)
@@ -28,6 +33,7 @@ public class ItemCollectableCoin : ItemCollectableBase
             if (Vector3.Distance(transform.position, PlayerController.Instance.transform.position) < minDistance)
             {
                 HideObject();
+                CoinAnimatorManager.Instance.RemoveCoin(this);
                 Destroy(gameObject, timeToHide);
             }
         }
