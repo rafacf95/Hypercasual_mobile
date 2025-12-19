@@ -26,10 +26,15 @@ public class ItemCollectableBase : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void HideGraph()
+    {
+        if (graphItem != null) graphItem.SetActive(false);
+    }
+
     protected virtual void Collect()
     {
         // Debug.Log("Collect");
-        if (graphItem != null) graphItem.SetActive(false);
+        HideGraph();
         Invoke(nameof(HideObject), timeToHide);
         OnCollect();
     }
@@ -42,9 +47,11 @@ public class ItemCollectableBase : MonoBehaviour
             if (!particles.isPlaying)
             {
                 // particles.collision.AddPlane(GameObject.Find("SPR_Floor").GetComponent<Transform>());
+                // particles.collision.AddPlane(GameObject.FindGameObjectWithTag("Floor").GetComponent<Transform>().transform);
                 particles.Play();
             }
         }
         if(audioSource != null) audioSource.Play();
     }
+
 }

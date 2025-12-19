@@ -31,7 +31,7 @@ public class ItemCollectableCoin : ItemCollectableBase
 
             if (Vector3.Distance(transform.position, PlayerController.Instance.transform.position) < minDistance)
             {
-                HideObject();
+                HideGraph();
                 ItemManager.Instance.AddCoin();
                 CoinAnimatorManager.Instance.RemoveCoin(this);
                 PlayerController.Instance.Bounce();
