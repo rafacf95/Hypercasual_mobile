@@ -10,6 +10,7 @@ public class ItemCollectableCoin : ItemCollectableBase
 
     protected override void Collect()
     {
+        // base.Collect();
         OnCollect();
     }
     protected override void OnCollect()
