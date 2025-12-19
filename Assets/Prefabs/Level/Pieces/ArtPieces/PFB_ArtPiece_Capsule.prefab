@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 8307164012049619370}
   - component: {fileID: 1092172465157951997}
   - component: {fileID: 4540355190304303038}
+  - component: {fileID: 8237941787578171170}
   m_Layer: 0
-  m_Name: ArtPiece_Capsule
+  m_Name: PFB_ArtPiece_Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,3 +82,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8237941787578171170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5310726004422783608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8584dafa86fb2c84c9a9883ac6b25b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 2
+  meshRenderer: {fileID: 4540355190304303038}
+  color: {r: 1, g: 1, b: 1, a: 1}

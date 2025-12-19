@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 690568608556417450}
   - component: {fileID: 2815534015472377218}
   - component: {fileID: 3411097229012460874}
+  - component: {fileID: -6109924550589101157}
   m_Layer: 0
-  m_Name: ArtPiece_Cylinder
+  m_Name: PFB_ArtPiece_Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,3 +82,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-6109924550589101157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2878884644771480223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8584dafa86fb2c84c9a9883ac6b25b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 2
+  meshRenderer: {fileID: 3411097229012460874}
+  color: {r: 1, g: 1, b: 1, a: 1}

@@ -11,11 +11,11 @@ public class MovementHelper : MonoBehaviour
 
     void Start()
     {
-        // transform.position = positions[0].transform.position;
 
         if (!IsEmpty())
         {
-            transform.position = positions[RandomIndex()].transform.position;
+            // transform.position = positions[RandomIndex()].transform.position;
+            transform.position = positions[0].transform.position;
             NextIndex();
 
             StartCoroutine(StartMoviment());

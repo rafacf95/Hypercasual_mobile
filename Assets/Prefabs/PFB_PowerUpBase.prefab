@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3079126438769423847}
   - component: {fileID: 3079126438769423846}
   - component: {fileID: 3079126438769423845}
+  - component: {fileID: 1421979967787425063}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Untagged
@@ -81,6 +82,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1421979967787425063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3079126438769423844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8584dafa86fb2c84c9a9883ac6b25b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 2
+  meshRenderer: {fileID: 3079126438769423845}
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &3079126439625239212
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +109,7 @@ GameObject:
   - component: {fileID: 3079126439625239214}
   - component: {fileID: 3079126439625239213}
   m_Layer: 0
-  m_Name: PFB_PowerUp
+  m_Name: PFB_PowerUpBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
