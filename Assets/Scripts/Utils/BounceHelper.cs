@@ -22,13 +22,17 @@ public class BounceHelper : MonoBehaviour
 
     public void Bounce()
     {
-        // if (_myTween == null || !_myTween.IsActive())
-        // {
-        //     _myTween = transform.DOScale(scaleBounce, scaleDuration).SetEase(ease).SetLoops(2, LoopType.Yoyo);
-        // }
-        transform.DOScale(scaleBounce, scaleDuration).SetEase(ease).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
+        if (_myTween.IsActive())
         {
             transform.localScale = Vector3.one;
-        });
+            _myTween.Kill();
+            // _myTween = transform.DOScale(scaleBounce, scaleDuration).SetEase(ease).SetLoops(2, LoopType.Yoyo);
+        }
+
+        _myTween = transform.DOScale(scaleBounce, scaleDuration).SetEase(ease).SetLoops(2, LoopType.Yoyo);
+        // transform.DOScale(scaleBounce, scaleDuration).SetEase(ease).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
+        // {
+        //     transform.localScale = Vector3.one;
+        // });
     }
 }
