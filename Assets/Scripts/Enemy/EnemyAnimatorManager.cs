@@ -19,6 +19,14 @@ public class EnemyAnimatorManager : Singleton<EnemyAnimatorManager>
         enemies = new List<EnemyBase>();
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            StartAnimation();
+        }
+    }
+
     public void RegisterEnemy(EnemyBase e)
     {
         if (!enemies.Contains(e))
@@ -47,7 +55,7 @@ public class EnemyAnimatorManager : Singleton<EnemyAnimatorManager>
 
     IEnumerator ScaleByTime()
     {
-        foreach(var e in enemies)
+        foreach (var e in enemies)
         {
             e.transform.localScale = Vector3.zero;
         }
@@ -56,7 +64,7 @@ public class EnemyAnimatorManager : Singleton<EnemyAnimatorManager>
 
         yield return null;
 
-        for(int i = 0; i< enemies.Count; i++)
+        for (int i = 0; i < enemies.Count; i++)
         {
             enemies[i].transform.DOScale(1, scaleDuration).SetEase(ease);
             yield return new WaitForSeconds(scaleTimeBetween);
