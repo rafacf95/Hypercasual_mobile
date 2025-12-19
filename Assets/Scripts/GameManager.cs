@@ -21,4 +21,8 @@ public class GameManager : Singleton<GameManager>
         endGameUi.SetActive(true);
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }

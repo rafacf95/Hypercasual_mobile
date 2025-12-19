@@ -90,7 +90,7 @@ public class PlayerController : Singleton<PlayerController>
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.CompareTag(tagEndLine))
+        if (other.CompareTag(tagEndLine))
         {
             _canRun = false;
             GameManager.Instance.EndGame();
