@@ -1407,6 +1407,7 @@ Transform:
   - {fileID: 322669008}
   - {fileID: 1606157513}
   - {fileID: 1862705745}
+  - {fileID: 1942717070}
   m_Father: {fileID: 489402209}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2394,6 +2395,53 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1942717069
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1942717070}
+  - component: {fileID: 1942717071}
+  m_Layer: 0
+  m_Name: EnemyAnimatorManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1942717070
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942717069}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1397578558}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1942717071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942717069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3117bbd026c0ca429eaa26b7041a265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies: []
+  scaleDuration: 0.2
+  scaleTimeBetween: 0.1
+  ease: 27
 --- !u!1 &1943524028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2497,8 +2545,9 @@ MonoBehaviour:
   textMeshPro: {fileID: 1328325260}
   coinCollector: {fileID: 672873519}
   animatorManager: {fileID: 1547615513}
+  spawnDuration: 0.5
+  ease: 27
   _bounceHelper: {fileID: 1943524029}
-  _currentSpeed: 0
 --- !u!1 &1971989600
 GameObject:
   m_ObjectHideFlags: 0

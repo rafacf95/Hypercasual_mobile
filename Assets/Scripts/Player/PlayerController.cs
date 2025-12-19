@@ -45,6 +45,11 @@ public class PlayerController : Singleton<PlayerController>
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            SpawnAnimation();
+        }
+
         if (!_canRun) return;
 
         _pos = target.position;
@@ -53,6 +58,8 @@ public class PlayerController : Singleton<PlayerController>
 
         transform.position = Vector3.Lerp(transform.position, _pos, lerpSpeed * Time.deltaTime);
         transform.Translate(_currentSpeed * Time.deltaTime * transform.forward);
+
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -93,7 +100,10 @@ public class PlayerController : Singleton<PlayerController>
 
     public void SpawnAnimation()
     {
-        transform.DOScale(0, spawnDuration).SetEase(ease).From();
+        transform.DOScale(0, spawnDuration).SetEase(ease).From().OnComplete(() =>
+        {
+            transform.localScale = Vector3.one;
+        });
     }
 
     #region PowerUps
