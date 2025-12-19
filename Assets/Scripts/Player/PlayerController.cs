@@ -15,6 +15,8 @@ public class PlayerController : Singleton<PlayerController>
     public float speed = 1f;
     public string tagEnemy = "Enemy";
     public string tagEndLine = "EndLine";
+    public float SideLimit = 4f;
+    public Vector2 vectorSideLimit = new Vector2(-4, 4);
 
     [Header("Power Ups")]
     public bool invincible;
@@ -25,6 +27,9 @@ public class PlayerController : Singleton<PlayerController>
     public AnimatorManager animatorManager;
     public float spawnDuration = .5f;
     public Ease ease = Ease.OutBack;
+
+    [Header("Particles setup")]
+    public ParticleSystem vfxDeath;
 
     [SerializeField] private BounceHelper _bounceHelper;
 
@@ -56,6 +61,12 @@ public class PlayerController : Singleton<PlayerController>
         _pos.y = transform.position.y;
         _pos.z = transform.position.z;
 
+        // if (_pos.x < -SideLimit) _pos.x = -SideLimit;
+        // else if (_pos.x > SideLimit) _pos.x = SideLimit;
+
+        if (_pos.x < vectorSideLimit.x) _pos.x = vectorSideLimit.x;
+        else if (_pos.x > vectorSideLimit.y) _pos.x = SideLimit;
+
         transform.position = Vector3.Lerp(transform.position, _pos, lerpSpeed * Time.deltaTime);
         transform.Translate(_currentSpeed * Time.deltaTime * transform.forward);
 
@@ -70,6 +81,8 @@ public class PlayerController : Singleton<PlayerController>
             transform.DOMoveZ(-1f, .3f).SetRelative();
             GameManager.Instance.EndGame();
             animatorManager.Play(AnimatorManager.AnimationType.DEAD);
+
+            if (!vfxDeath.isPlaying) vfxDeath.Play();
 
         }
     }
