@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3822964902395643606}
   - component: {fileID: 3822964902395643601}
   - component: {fileID: 3822964902395643600}
+  - component: {fileID: 5981866374264873385}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Enemy
@@ -81,6 +82,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5981866374264873385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3822964902395643605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8584dafa86fb2c84c9a9883ac6b25b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 2
+  meshRenderer: {fileID: 3822964902395643600}
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &3822964902534271341
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +108,7 @@ GameObject:
   - component: {fileID: 3822964902534271342}
   - component: {fileID: 3822964902534271343}
   - component: {fileID: 9042674153120473969}
+  - component: {fileID: -8546284907355567177}
   m_Layer: 0
   m_Name: PFB_Enemy
   m_TagString: Enemy
@@ -107,7 +124,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3822964902534271341}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10.04}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3822964902395643606}
@@ -140,4 +157,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positions: []
-  duration: 1
+  duration: 1.5
+--- !u!114 &-8546284907355567177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3822964902534271341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a980c1726fe98354b9978c0badceb8d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

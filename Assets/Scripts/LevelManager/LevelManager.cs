@@ -58,6 +58,7 @@ public class LevelManager : MonoBehaviour
 
         ClearSpawnedPieces();
         CoinAnimatorManager.Instance.ClearList();
+        EnemyAnimatorManager.Instance.ClearList();
         for (int i = 0; i < piecesNumber; i++)
         {
             CreateLevelPiece();
@@ -124,6 +125,7 @@ public class LevelManager : MonoBehaviour
         }
 
         CoinAnimatorManager.Instance.StartAnimation();
+        EnemyAnimatorManager.Instance.StartAnimation();
     }
 
     IEnumerator CreateLevelPieceCoroutine()
@@ -139,11 +141,6 @@ public class LevelManager : MonoBehaviour
     }
 
     #endregion
-
-    void Awake()
-    {
-        
-    }
 
     void Start()
     {

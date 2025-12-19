@@ -23,10 +23,14 @@ public class PlayerController : Singleton<PlayerController>
 
     [Header("Animation setup")]
     public AnimatorManager animatorManager;
+    public float spawnDuration = .5f;
+    public Ease ease = Ease.OutBack;
+
+    [SerializeField] private BounceHelper _bounceHelper;
 
     private bool _canRun;
     private Vector3 _pos;
-    [SerializeField] private float _currentSpeed;
+    private float _currentSpeed;
     private Vector3 _startPosition;
     private float _baseAnimationSpeed = 7f;
 
@@ -36,6 +40,7 @@ public class PlayerController : Singleton<PlayerController>
         // ResetSpeed();
         _currentSpeed = speed;
         SetPowerUpText();
+        SpawnAnimation();
     }
 
     void Update()
@@ -78,6 +83,19 @@ public class PlayerController : Singleton<PlayerController>
         animatorManager.Play(AnimatorManager.AnimationType.RUN);
     }
 
+    public void Bounce()
+    {
+        if (_bounceHelper != null)
+        {
+            _bounceHelper.Bounce();
+        }
+    }
+
+    public void SpawnAnimation()
+    {
+        transform.DOScale(0, spawnDuration).SetEase(ease).From();
+    }
+
     #region PowerUps
     public void SetPowerUpText(string s = "")
     {
@@ -87,13 +105,13 @@ public class PlayerController : Singleton<PlayerController>
     public void PowerUpSpeedUp(float f)
     {
         _currentSpeed = f;
-        animatorManager.Play(AnimatorManager.AnimationType.RUN, _currentSpeed /_baseAnimationSpeed);
+        animatorManager.Play(AnimatorManager.AnimationType.RUN, _currentSpeed / _baseAnimationSpeed);
     }
 
     public void ResetSpeed()
     {
         _currentSpeed = speed;
-        animatorManager.Play(AnimatorManager.AnimationType.RUN, _currentSpeed /_baseAnimationSpeed);
+        animatorManager.Play(AnimatorManager.AnimationType.RUN, _currentSpeed / _baseAnimationSpeed);
     }
 
     public void SetInvincible(bool b = true)
