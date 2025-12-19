@@ -81,6 +81,7 @@ public class PlayerController : Singleton<PlayerController>
             transform.DOMoveZ(-1f, .3f).SetRelative();
             GameManager.Instance.EndGame();
             animatorManager.Play(AnimatorManager.AnimationType.DEAD);
+            SetPowerUpText();
 
             if (!vfxDeath.isPlaying) vfxDeath.Play();
 

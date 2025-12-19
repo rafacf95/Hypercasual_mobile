@@ -6,20 +6,22 @@ using UnityEngine;
 public class ParticleSystemHelper : MonoBehaviour
 {
     public string tagToCompare = "Floor";
-    private ParticleSystem _particles;
-
-    void OnValidate()
-    {
-        _particles = GetComponent<ParticleSystem>();
-    }
 
     private void SetCollisionObject()
     {
-        _particles.collision.AddPlane(GameObject.FindGameObjectWithTag(tagToCompare).GetComponent<Transform>().transform);
+        GetComponent<ParticleSystem>().collision.AddPlane(GameObject.FindGameObjectWithTag(tagToCompare).GetComponent<Transform>().transform);
+    }
+
+    private void SetMaterial()
+    {
+        var parent = this.transform.parent;
+        var parentMaterial = parent.GetComponentInChildren<MeshRenderer>().material;
+        GetComponent<Renderer>().material = parentMaterial;
     }
 
     void Start()
     {
         SetCollisionObject();
+        SetMaterial();
     }
 }
