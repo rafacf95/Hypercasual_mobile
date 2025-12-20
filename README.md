@@ -1,6 +1,8 @@
 [![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/rafacf95/Hypercasual_mobile_game/blob/main/README.md)
 [![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/rafacf95/Hypercasual_mobile_game/blob/main/README.en.md)
 
+# Hypercasua Mobile Game project
+
 Este repositório é um projeto de jogo mobile no gênero hypercasual desenvolvido utilizando a **Unity Engine**.  
 Foi criado com foco em aprendizado e prática de desenvolvimento de jogos mobile, explorando mecânicas simples, controles intuitivos e ciclos rápidos de gameplay.
 
