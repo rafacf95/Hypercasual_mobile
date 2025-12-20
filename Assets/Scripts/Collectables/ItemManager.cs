@@ -10,25 +10,18 @@ public class ItemManager : Singleton<ItemManager>
     public SOInt coins;
     public TextMeshProUGUI coinText;
 
-    [Header("Lifes setup")]
-    public SOInt lifes;
-    public TextMeshProUGUI lifeText;
-
     private void Reset()
     {
         coins.value = 0;
-        lifes.value = 0;
+        coinText.text = coins.value.ToString();
     }
 
     public void AddCoin(int amount = 1)
     {
         coins.value += amount;
+        coinText.text = coins.value.ToString();
     }
 
-    public void AddLife(int amount = 1)
-    {
-        lifes.value += amount;
-    }
     void Start()
     {
         Reset();

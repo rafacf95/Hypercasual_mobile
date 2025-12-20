@@ -16,6 +16,7 @@ public class ItemCollectableCoin : ItemCollectableBase
     protected override void OnCollect()
     {
         base.OnCollect();
+        ItemManager.Instance.AddCoin();
         collect = true;
     }
 
@@ -33,7 +34,6 @@ public class ItemCollectableCoin : ItemCollectableBase
             if (Vector3.Distance(transform.position, PlayerController.Instance.transform.position) < minDistance)
             {
                 HideGraph();
-                ItemManager.Instance.AddCoin();
                 CoinAnimatorManager.Instance.RemoveCoin(this);
                 PlayerController.Instance.Bounce();
                 Destroy(gameObject, timeToHide);
