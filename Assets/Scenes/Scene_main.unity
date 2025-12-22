@@ -1146,6 +1146,7 @@ MonoBehaviour:
   - {fileID: 4444805910677236298, guid: 951d63dc4ae99cb42a3d448f7ab1439f, type: 3}
   - {fileID: 1699948886471003314, guid: 5080a1065ce8649448e49df8937f2342, type: 3}
   - {fileID: 1699948886471003314, guid: 0588622378a20b64484db5447ea9cf53, type: 3}
+  - {fileID: 1699948886471003314, guid: 0d046a0459f52904bb669470760e49b5, type: 3}
   endPiece: {fileID: 7884050447391035231, guid: edabaec142071b24c8d2cb18efb413b2, type: 3}
   piecesNumber: 7
   timeBetweenPieces: 0.3
@@ -3525,6 +3526,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 174.87, y: -107.28674}
+  m_AnchoredPosition: {x: 174.87, y: -107.28662}
   m_SizeDelta: {x: 350.26, y: 214.57318}
   m_Pivot: {x: 0.5, y: 0.5}
