@@ -5,6 +5,7 @@
 
 This repository is a hypercasual mobile game project developed using the **Unity Engine**.  
 It was created with a focus on learning and practicing mobile game development, exploring simple mechanics, intuitive controls, and fast gameplay loops.
+Developed during classes on the EBAC platform.
 
 ## Overview
 

@@ -5,6 +5,7 @@
 
 Este repositório é um projeto de jogo mobile no gênero hypercasual desenvolvido utilizando a **Unity Engine**.  
 Foi criado com foco em aprendizado e prática de desenvolvimento de jogos mobile, explorando mecânicas simples, controles intuitivos e ciclos rápidos de gameplay.
+Desenvolvido durante as aulas da plataforma EBAC.
 
 ## Visão Geral
 
